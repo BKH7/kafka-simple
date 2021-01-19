@@ -1,23 +1,11 @@
-@HOST = http://192.168.1.12/v2/realtime
-
-GET {{HOST}} HTTP/1.1
+@HOST = http://localhost:8080
 
 ###
-
 POST {{HOST}} HTTP/1.1
 content-type: application/json
 
 {
-    "mac": "24:6F:28:F4:36:04",
-    "gtime": "11:29:28",
-    "gdate": "06/03/20",
-    "gtemp": "33",
-    "tag": [
-        {
-            "macAddress": "64:69:4e:43:2c:aa",
-            "temp": 35.5,
-            "battery": "45",
-            "rssi": "-53"
-        }
-    ]
+    "Msg_id": 1,
+    "Sender": "Tom",
+    "Msg": "Hello"
 }
