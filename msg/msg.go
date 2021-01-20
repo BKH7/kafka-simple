@@ -16,10 +16,10 @@ type Msgbody struct {
 // Producer ...
 func Producer(data *Msgbody) error {
 	j, err := json.Marshal(data)
+	err = conn.Producer("mytopic", j)
 	if err != nil {
 		return err
 	}
 
-	conn.Producer("mytopic", j)
 	return nil
 }

@@ -1,7 +1,7 @@
 # build
 FROM golang:1.14-alpine as builder
 
-RUN apk update && apk add tzdata \
+RUN apk update && apk add tzdata librdkafka-dev gcc g++ make pkgconf \
     && cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime \
     && echo "Asia/Bangkok" >  /etc/timezone \
     && apk del tzdata
@@ -16,9 +16,7 @@ COPY . .
 
 RUN go clean --cache
 
-RUN go build \
-    -ldflags "-X main.buildcommit=$(cat .git/refs/heads/develop) -X main.buildtime=$(date +%Y%m%d.%H%M%S)" \
-    -o goapp main.go
+RUN go build -o goapp main.go
 
 # ---------------------------------------------------------
 
@@ -33,5 +31,6 @@ RUN apk update && apk add tzdata \
 WORKDIR /app
 
 COPY --from=builder /app/goapp .
+COPY --from=builder /app/config.json .
 
 CMD ["./goapp"]

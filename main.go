@@ -29,6 +29,6 @@ func main() {
 	r.HandleFunc("/", handlers.Root)
 	r.HandleFunc("/health-check", handlers.HealthCheck)
 
-	logrus.Info("HTTP Serve on 127.0.0.1:8080")
+	logrus.Infof("HTTP Serve on 127.0.0.1:%s", viper.GetString("server.port"))
 	http.ListenAndServe(viper.GetString("server.port"), r)
 }

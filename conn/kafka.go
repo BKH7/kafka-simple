@@ -28,7 +28,7 @@ func Producer(topic string, msg []byte) error {
 	err := kc.producer.Produce(&kafka.Message{
 		TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 		Value:          msg,
-	}, nil)
+	}, deliveryChan)
 	if err != nil {
 		logrus.Error(err)
 	}

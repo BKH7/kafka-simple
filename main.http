@@ -1,4 +1,7 @@
-@HOST = http://localhost:8080
+@HOST = http://localhost:10800
+
+###
+GET {{HOST}}/health-check HTTP/1.1
 
 ###
 POST {{HOST}} HTTP/1.1
@@ -7,5 +10,5 @@ content-type: application/json
 {
     "Msg_id": 1,
     "Sender": "Tom",
-    "Msg": "Hello"
+    "Msg": "Hello2"
 }

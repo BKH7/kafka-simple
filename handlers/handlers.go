@@ -42,6 +42,7 @@ func Realtime(w http.ResponseWriter, r *http.Request) {
 		jsonify.JSON(w)(http.StatusInternalServerError, err)
 		return
 	}
+
 	jsonify.JSON(w)(http.StatusCreated, map[string]interface{}{
 		"Code":    "OK",
 		"Created": time.Now().UTC().Format("2006-01-02T15:04:05Z07:00"),
